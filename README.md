@@ -10,6 +10,11 @@
 •	如何根据申请人兴趣个性化推荐适合的 GIS 项目？
 
 ## 架构
+<div align=center>
+  <img width="1000" alt="image" src="https://github.com/user-attachments/assets/c51d834e-ca07-454c-855e-a2e2e4bebc05">
+  <p><b>GISphereKG 架构图</b></p>
+</div>
+
 ### 1. 数据收集与预处理
 - 从 97 个国家和地区收集超过 600 个 GIS 项目和 2000 名教授的信息，数据包括国家、城市、大学、教授研究兴趣等
 - 对数据进行清理和标准化，确保其准确性和一致性
