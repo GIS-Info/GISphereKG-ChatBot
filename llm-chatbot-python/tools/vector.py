@@ -11,7 +11,7 @@ from langchain.chains import RetrievalQA, RetrievalQAWithSourcesChain
 
 neo4jvector = Neo4jVector.from_existing_index(
     embeddings,
-    url = st.secrets['NEO4J_URL'],
+    url = st.secrets['NEO4J_URI'],
     username = st.secrets['NEO4J_USERNAME'],
     password = st.secrets['NEO4J_PASSWORD'],
     index_name = 'ri_embedding',

@@ -5,7 +5,7 @@ import os
 # from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Neo4jVector
-from constants import OPENAI_API_KEY, NEO4J_URL, NEO4J_USERNAME, NEO4J_PASSWORD
+from constants import OPENAI_API_KEY, NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
 
 
 os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
@@ -18,7 +18,7 @@ Only use this file for only one time, if there is no embedding for researchInter
 """
 # neo4j_db = Neo4jVector.from_existing_graph(
 #     OpenAIEmbeddings(),
-#     url = NEO4J_URL,
+#     url = NEO4J_URI,
 #     username=NEO4J_USERNAME,
 #     password=NEO4J_PASSWORD,
 #     node_label= 'ResearchInterest',
@@ -32,7 +32,7 @@ Use Embeddings from the existing index
 """
 # neo4j_store = Neo4jVector.from_existing_index(
 #     OpenAIEmbeddings(),
-#     url = NEO4J_URL,
+#     url = NEO4J_URI,
 #     username=NEO4J_USERNAME,
 #     password=NEO4J_PASSWORD,
 #     database="neo4j",

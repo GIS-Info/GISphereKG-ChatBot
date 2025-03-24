@@ -2,7 +2,7 @@ import os
 import sys
 import pandas as pd
 from neo4j import GraphDatabase
-from constants import NEO4J_URL, NEO4J_USERNAME, NEO4J_PASSWORD
+from constants import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD
 
 threshold = 0.9
 prof_sim_df = pd.read_csv(os.path.dirname(os.getcwd()) + "/data/prof_sim.csv")
@@ -11,7 +11,7 @@ score_above = [s for s in scores if s > threshold]
 
 # print(len(score_above), len(scores))
 
-url = NEO4J_URL
+url = NEO4J_URI
 auth = (NEO4J_USERNAME, NEO4J_PASSWORD)
 
 with GraphDatabase.driver(url, auth = auth) as driver:
