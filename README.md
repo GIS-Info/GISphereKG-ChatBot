@@ -1,34 +1,92 @@
-# GISphereKG-ChatBot
-## 摘要
-本文的研究背景是GIS学科在全球范围内的重要性日益提升。GIS技术已广泛应用于城市规划、环境检测、灾害管理等领域，这种多学科应用吸引了越来越多的学生选择相关研究生项目。然而，目前申请人面临以下几个主要问题：
-1.	信息过载：全球超过600个GIS项目和2000多名教授的数据分布在不同的资源中，导致信息查找困难。
-2.	缺乏个性化指导：现有工具无法根据申请人的研究兴趣或职业目标提供精准推荐。
-3.	难以理解研究领域动态：学生难以深入了解教授的研究兴趣和领域趋势，影响其选择决策。
-为了解决这些问题，本文提出 GISphere-KG 平台。它通过知识图谱（KG）整合和组织异构数据，并结合大语言模型（LLMs）的自然语言处理能力，为申请人提供智能化的搜索、匹配和推荐功能。其核心研究问题包括：
-•	如何使申请人更高效、直观地获取与其兴趣一致的项目资源？
-•	如何帮助申请人发现研究方向相近的教授？
-•	如何根据申请人兴趣个性化推荐适合的 GIS 项目？
+# GISphereKG ChatBot
 
-## 架构
-<div align=center>
-  <img width="1000" alt="image" src="https://github.com/user-attachments/assets/c51d834e-ca07-454c-855e-a2e2e4bebc05">
-  <p><b>GISphereKG 架构图</b></p>
-</div>
+## Abstract
 
-### 1. 数据收集与预处理
-- 从 97 个国家和地区收集超过 600 个 GIS 项目和 2000 名教授的信息，数据包括国家、城市、大学、教授研究兴趣等
-- 对数据进行清理和标准化，确保其准确性和一致性
-### 2. 知识图谱构建
-- 设计了包括“教授-研究兴趣-大学-地理位置”等关系在内的七类实体结构，并通过 Neo4j 实现可视化
-- 定义语义关系（如教授的研究兴趣相似性）以支持复杂的语义查询
-### 3. 语义相似度计算
-- 使用 state-of-the-art 嵌入模型（如 text-embedding-ada-002）将研究兴趣转化为语义向量，利用余弦相似度计算兴趣间的相似性
-- 建立“教授研究兴趣相似性”关系以支持相关教授的快速发现
+The research background of this paper is the increasing global importance of the GIS discipline. GIS technology is widely applied in urban planning, environmental monitoring, disaster management, and other areas. This interdisciplinary application has attracted a growing number of students to pursue related graduate programs. However, applicants currently face the following key issues:
 
-### 4. 基于LLM的图搜索
-- 显式图搜索：直接查询图数据库中的实体及其关系（如教授的研究兴趣或大学的地理位置）
-- 隐式图搜索：基于申请人输入的研究兴趣，推导语义相似的项目和相关教授
+1. **Information overload:** Data on over 600 GIS projects and more than 2000 professors from around the world are dispersed across different sources, making information retrieval difficult.
+2. **Lack of personalized guidance:** Existing tools cannot provide precise recommendations based on an applicant’s research interests or career goals.
+3. **Difficulty understanding research dynamics:** Students find it challenging to gain in-depth insights into professors' research interests and trends in the field, which affects their decision-making.
 
+To address these challenges, this paper proposes the GISphere-KG platform. By integrating and organizing heterogeneous data through a knowledge graph (KG) and leveraging the natural language processing capabilities of large language models (LLMs), the platform offers intelligent search, matching, and recommendation functionalities for applicants. The core research questions include:
 
+- How can applicants more efficiently and intuitively access project resources that align with their interests?
+- How can applicants discover professors with similar research directions?
+- How can personalized recommendations for suitable GIS projects be provided based on an applicant’s interests?
 
+## Architecture
 
+### 1. Data Collection and Preprocessing
+
+- Collected information from over 600 GIS projects and 2000 professors across 97 countries and regions, including details such as country, city, university, and professors' research interests.
+- Data cleaning and standardization are performed to ensure accuracy and consistency.
+
+### 2. Knowledge Graph Construction
+
+- Designed a seven-category entity structure—including relationships such as "Professor - Research Interests - University - Geographic Location"—and visualized it using Neo4j.
+- Defined semantic relationships (e.g., similarity between professors' research interests) to support complex semantic queries.
+
+### 3. Semantic Similarity Calculation
+
+- Utilized state-of-the-art embedding models (e.g., text-embedding-ada-002) to convert research interests into semantic vectors, with cosine similarity used to compute the similarity between interests.
+- Established "Professor Research Interest Similarity" relationships to support rapid discovery of related professors.
+
+### 4. LLM-based Graph Search
+
+- **Explicit graph search:** Directly queries the entities and relationships within the graph database (e.g., professors' research interests or universities' geographic locations).
+- **Implicit graph search:** Infers semantically similar projects and related professors based on the research interests provided by the applicant.
+
+## Usage
+
+### Option 1: Online Application (Recommended)
+
+Access the live application at:
+ https://gispherekg.streamlit.app/
+
+### Option 2: Local Installation
+
+To run the application locally, follow these steps:
+
+1. **Neo4j Setup:**
+
+   - Create a [Neo4j](https://neo4j.com/) instance (for free).
+   - Navigate to 'Back up and restore' and select 'Restore from backup file.'
+   - Upload the backup file located in the `llm-chatbot-python/data/` folder.
+
+2. **Environment Variables:**
+    Create a `secrets.toml` file in `llm-chatbot-python/.streamlit/` folder and configure the following environment variables:
+
+   - **Neo4j Database:** `NEO4J_URI`, `NEO4J_USERNAME`, `NEO4J_PASSWORD`
+   - **OpenAI LLM:** `OPENAI_API_KEY`, `OPENAI_MODEL`
+
+3. **Install Dependencies:**
+    In the project directory, run:
+
+   ```bash
+   cd llm-chatbot-python
+   pip install -r requirements.txt
+   ```
+
+4. **Run the Application:**
+    Launch the app on http://localhost:8501/ with:
+
+   ```bash
+   streamlit run bot.py
+   ```
+
+## Related Tutorials
+
+This project is built upon the Streamlit framework. For additional resources, please refer to the following:
+
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [GitHub Repo: Build a Neo4j-backed Chatbot using Python](https://github.com/neo4j-graphacademy/llm-chatbot-python)
+- [Tutorial: Build a Neo4j-backed Chatbot using Python](https://graphacademy.neo4j.com/courses/llm-chatbot-python/1-project-setup/2-setup/)
+
+## Chinese Version
+
+A Chinese version of the README is available here:
+ [[中文版本\]](https://chatgpt.com/c/README_Chinese.md)
+
+## Citation
+
+Gu, Z., Li, W., Zhou, B., Wang, Y., Chen, Y., Ye, S., Wang, K., Gu, H. and Kang, Y. (2025), *GISphere Knowledge Graph for Geography Education: Recommending Graduate Geographic Information System/Science Programs*. Transactions in GIS, 29: e13283. https://doi.org/10.1111/tgis.13283
