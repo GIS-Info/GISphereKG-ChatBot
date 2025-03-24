@@ -8,6 +8,7 @@ llm_kwargs = {
 }
 embeddings_kwargs = {
     "openai_api_key": st.secrets["OPENAI_API_KEY"],
+    "model": 'text-embedding-3-small'
 }
 
 # Add base_url if it exists in the secrets
