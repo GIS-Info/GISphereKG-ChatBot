@@ -16,6 +16,11 @@ To address these challenges, this paper proposes the GISphere-KG platform. By in
 
 ## Architecture
 
+<div align=center>
+  <img width="1000" alt="image" src="https://github.com/user-attachments/assets/c51d834e-ca07-454c-855e-a2e2e4bebc05">
+  <p><b>The workflow of the GISphere-KG</b></p>
+</div>
+
 ### 1. Data Collection and Preprocessing
 
 - Collected information from over 600 GIS projects and 2000 professors across 97 countries and regions, including details such as country, city, university, and professors' research interests.
