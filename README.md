@@ -1,5 +1,7 @@
 # GISphereKG ChatBot
 
+[[GISphere Website]](https://www.gisphere.info/) [[中文文档]](https://chatgpt.com/c/README_Chinese.md) 
+
 ## Abstract
 
 The research background of this paper is the increasing global importance of the GIS discipline. GIS technology is widely applied in urban planning, environmental monitoring, disaster management, and other areas. This interdisciplinary application has attracted a growing number of students to pursue related graduate programs. However, applicants currently face the following key issues:
@@ -86,11 +88,6 @@ This project is built upon the Streamlit framework. For additional resources, pl
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [GitHub Repo: Build a Neo4j-backed Chatbot using Python](https://github.com/neo4j-graphacademy/llm-chatbot-python)
 - [Tutorial: Build a Neo4j-backed Chatbot using Python](https://graphacademy.neo4j.com/courses/llm-chatbot-python/1-project-setup/2-setup/)
-
-## Chinese Version
-
-A Chinese version of the README is available here:
- [[中文版本\]](https://chatgpt.com/c/README_Chinese.md)
 
 ## Citation
 
