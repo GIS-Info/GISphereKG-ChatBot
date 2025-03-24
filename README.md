@@ -1,6 +1,6 @@
 # GISphereKG ChatBot
 
-[[GISphere Website]](https://www.gisphere.info/) [[中文文档]](https://chatgpt.com/c/README_Chinese.md) 
+[[GISphere Website]](https://www.gisphere.info/) [[中文文档]](README_Chinese.md) 
 
 ## Abstract
 
@@ -16,7 +16,7 @@ To address these challenges, this paper proposes the GISphere-KG platform. By in
 - How can applicants discover professors with similar research directions?
 - How can personalized recommendations for suitable GIS projects be provided based on an applicant’s interests?
 
-## Architecture
+## Workflow
 
 <div align=center>
   <img width="1000" alt="image" src="https://github.com/user-attachments/assets/c51d834e-ca07-454c-855e-a2e2e4bebc05">
