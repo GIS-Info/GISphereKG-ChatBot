@@ -6,7 +6,9 @@ __pycache__/
 # Mac system files
 .DS_Store
 */.DS_Store
+.idea/
 
 # Secrets
 llm-chatbot-python/.streamlit/
+
 
