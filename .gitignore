@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Mac system files
+.DS_Store
+*/.DS_Store
+.idea/
+
+# Secrets
+llm-chatbot-python/.streamlit/
+
+

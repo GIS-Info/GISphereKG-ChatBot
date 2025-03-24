@@ -1,17 +1,16 @@
 import streamlit as st
-from llm import llm, embeddings
-from graph import graph
 import sys
-sys.path.append("../../")
+sys.path.append("../")
 
+# from graph import graph
 import streamlit as st
-from langchain_community.vectorstores.neo4j_vector import  Neo4jVector
+from langchain_community.vectorstores import Neo4jVector
 from llm import llm, embeddings
 from langchain.chains import RetrievalQA, RetrievalQAWithSourcesChain
 
 neo4jvector = Neo4jVector.from_existing_index(
     embeddings,
-    url = st.secrets['NEO4J_URL'],
+    url = st.secrets['NEO4J_URI'],
     username = st.secrets['NEO4J_USERNAME'],
     password = st.secrets['NEO4J_PASSWORD'],
     index_name = 'ri_embedding',
@@ -35,16 +34,3 @@ kg_qa = RetrievalQA.from_llm(
     verbose = True,
     return_source_documents = True
 )
-
-
-
-
-# Create the Neo4jVector
-
-# Create the retriever
-
-# Create the prompt
-
-# Create the chain 
-
-# Create a function to call the chain
