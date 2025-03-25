@@ -1,14 +1,9 @@
 import sys
-import os
-# sys.path.append(os.path.dirname(os.getcwd()))
-# from langchain.vectorstores.neo4j_vector import Neo4jVector
-# from langchain.embeddings import OpenAIEmbeddings
-# from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Neo4jVector
 import streamlit as st
 
 sys.path.append("../")
-from llm import embeddings
+from llm import get_embeddings
 
 if __name__ == "__main__":
     """
@@ -17,8 +12,14 @@ if __name__ == "__main__":
 
     Only use this file for only one time, if there is no embedding for researchInterest
     """
+
+    embeddings_instance = get_embeddings(
+        st.secrets['api_key'],
+        st.secrets['base_url']
+    )
+
     neo4j_db = Neo4jVector.from_existing_graph(
-        embeddings,
+        embeddings_instance,
         url = st.secrets['NEO4J_URI'],
         username = st.secrets['NEO4J_USERNAME'],
         password = st.secrets['NEO4J_PASSWORD'],
@@ -33,7 +34,7 @@ if __name__ == "__main__":
     Use Embeddings from the existing index
     """
     neo4j_store = Neo4jVector.from_existing_index(
-        embeddings,
+        embeddings_instance,
         url = st.secrets['NEO4J_URI'],
         username = st.secrets['NEO4J_USERNAME'],
         password = st.secrets['NEO4J_PASSWORD'],
