@@ -1,17 +1,13 @@
-from llm import llm
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain import hub
 from langchain.tools import Tool
-from llm import llm
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
 
 from tools.vector import kg_qa
 from tools.cypher import cypher_qa
 
-# You are a movie expert providing information about movies.
-# Do not answer any questions using your pre-trained knowledge, only use the information provided in the context.
-# agent_prompt = hub.pull('hwchase17/react-chat')
+
 agent_prompt = PromptTemplate.from_template("""
 
 # Role Definition:\n
@@ -103,57 +99,47 @@ tools:
     However, a tool is required for "general chat" so the agent can respond to a user's input when no other tool
 '''
 
-tools = [
-    Tool.from_function(
-        name = "General Chat",
-        description = "For general chat not covered by other tools",
-        func = llm.invoke,
-        return_direct = True
-    ),
-    Tool.from_function(
-        name = "Vector Search Index",
-        description="Provides information about research interest using Vector Search",
-        func=kg_qa,
-        return_direct=False
-    ),
-    Tool.from_function(
-        name = "Graph Cypher QA Chain",
-        description = "Provides information about GIS programs including Professor, ResearchInterest, University, Department, City, Country, and Continent",
-        func = cypher_qa,
-        return_direct=False
+
+def create_agent_executor(llm, embeddings):
+    """Create agent components with dynamic LLM and embeddings"""
+    # Create tools with current LLM/embeddings
+    tools = [
+        Tool.from_function(
+            name="General Chat",
+            description="For general chat not covered by other tools",
+            func=llm.invoke,
+            return_direct=True
+        ),
+        Tool.from_function(
+            name="Vector Search Index",
+            description="Provides information about research interest using Vector Search",
+            func=kg_qa(llm, embeddings),  # Modified kg_qa call
+            return_direct=False
+        ),
+        Tool.from_function(
+            name="Graph Cypher QA Chain",
+            description="Provides information about GIS programs...",
+            func=cypher_qa(llm),  # Modified cypher_qa call
+            return_direct=False
+        )
+    ]
+
+    memory = ConversationBufferWindowMemory(
+        memory_key='chat_history',
+        k=5,
+        return_messages=True
     )
-]
 
-memory = ConversationBufferWindowMemory(
-    memory_key = 'chat_history',
-    k = 5,
-    return_messages = True
-)
+    agent = create_react_agent(llm, tools, agent_prompt)
+    return AgentExecutor(
+        agent=agent,
+        tools=tools,
+        memory=memory,
+        verbose=True
+    )
 
-agent = create_react_agent(llm, tools, agent_prompt)
-agent_executor = AgentExecutor(
-    agent = agent,
-    tools = tools,
-    memory = memory,
-    verbose = True
-)
-
-def generate_response(prompt):
-    """
-    Create a handler that calls the Conversational agent and returns a response to be rendered in the UI
-    :param prompt:
-    :return:
-    """
+def generate_response(prompt, llm, embeddings):
+    """Updated to use dynamic agent executor"""
+    agent_executor = create_agent_executor(llm, embeddings)
     response = agent_executor.invoke({"input": prompt})
-
     return response['output']
-
-# Create a movie chat chain
-
-# Create a set of tools
-
-# Create chat history callback
-
-# Create the agent
-
-# Create a handler to call the agent
