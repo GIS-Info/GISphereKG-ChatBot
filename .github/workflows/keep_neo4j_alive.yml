@@ -51,3 +51,4 @@ jobs:
               if driver:
                   driver.close()
                   print("Connection closed.")
+          EOF
