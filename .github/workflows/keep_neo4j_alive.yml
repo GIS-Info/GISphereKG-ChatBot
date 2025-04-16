@@ -46,6 +46,7 @@ jobs:
               logging.info("Successfully connected to Neo4j.")
               with driver.session() as session:
                   result = session.run("RETURN 1 AS test")
+                  record = result.single() # Get the first record
                   value = record[0] if record else 'No result' # Safely access the value
                   logging.info(f"Query executed, result: {value}")
           except Exception as e:
