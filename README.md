@@ -58,7 +58,9 @@ To run the application locally, follow these steps:
 
    - Create a [Neo4j](https://neo4j.com/) instance (for free).
    - Navigate to 'Back up and restore' and select 'Restore from backup file.'
-   - Upload the backup file located in the `llm-chatbot-python/data/` folder.
+   - Upload one of the backup files located in the `llm-chatbot-python/data/` folder:
+     - **`neo4j-database_v1.backup`**: The original graph database used in the published paper.
+     - **`neo4j-database_v2.backup`**: An updated version (as of March 2025) containing enriched GISphere data, including more universities and professors—particularly in mainland China. This version also features improved entity segmentation and enhanced linkage to research interests, powered by LLM-assisted processing.
 
 2. **Environment Variables:**
     Create a `secrets.toml` file in `llm-chatbot-python/.streamlit/` folder and configure the following environment variables:

@@ -37,7 +37,7 @@ Nodes:\n
 - For "Continent" nodes, return "NAME_CN" and "NAME_EN". 
 - For "Country" nodes, return "NAME_CN" and "NAME_EN". 
 - For "Department" nodes, return "NAME_CN" and "NAME_EN". 
-- For "University" nodes, return "NAME_EN", "Description_CN", "Description_EN", "URL", and "ABBR".\n\n
+- For "University" nodes, return "NAME_CN", "NAME_EN", "NAME_Local", "NAME_Other", "Description_CN", "Description_EN", "URL", and "ABBR".\n\n
 
 Relationships:\n
 - hasResearchInterestOf:   

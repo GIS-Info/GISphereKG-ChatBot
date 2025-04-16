@@ -7,19 +7,19 @@ from llm import get_embeddings
 
 if __name__ == "__main__":
     """
-    Embedding for the textual property of node (1536 length)
+    Embedding for the textual property of node
     For the first time to do embedding
 
     Only use this file for only one time, if there is no embedding for researchInterest
     """
 
     embeddings_instance = get_embeddings(
-        st.secrets['api_key'],
-        st.secrets['base_url']
+        st.secrets['OPENAI_API_KEY'],
+        st.secrets['OPENAI_BASE_URL']
     )
 
     neo4j_db = Neo4jVector.from_existing_graph(
-        embeddings_instance,
+        embedding=embeddings_instance,
         url = st.secrets['NEO4J_URI'],
         username = st.secrets['NEO4J_USERNAME'],
         password = st.secrets['NEO4J_PASSWORD'],
@@ -34,14 +34,14 @@ if __name__ == "__main__":
     Use Embeddings from the existing index
     """
     neo4j_store = Neo4jVector.from_existing_index(
-        embeddings_instance,
+        embedding=embeddings_instance,
         url = st.secrets['NEO4J_URI'],
         username = st.secrets['NEO4J_USERNAME'],
         password = st.secrets['NEO4J_PASSWORD'],
         database="neo4j",
         index_name = 'ri_embedding',
         embedding_node_property = "embedding",
-        text_node_property = "research_interest"
+        text_node_property = "research_interest",
     )
     result = neo4j_store.similarity_search("map visualization", k = 2)
     print(result)
