@@ -40,12 +40,13 @@ jobs:
           try:
               driver = GraphDatabase.driver(uri, auth=(user, password))
               driver.verify_connectivity() # Checks connection and verifies authentication
-              print("Successfully connected to neo4j.")
+              logging.info("Successfully connected to Neo4j.")
               with driver.session() as session:
                   result = session.run("RETURN 1 AS test")
-              print(f"Query executed, result: {result.single()[0]}")
+                  value = record[0] if record else 'No result' # Safely access the value
+                  logging.info(f"Query executed, result: {value}")
           except Exception as e:
-              print(f"Error connecting or querying neo4j: {e}")
+              logging.error(f"Error connecting or querying Neo4j: {e}", exc_info=True) # Log full traceback
               exit(1) # Fail the workflow if connection fails
           finally:
               if driver:
