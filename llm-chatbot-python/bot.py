@@ -38,11 +38,11 @@ with st.sidebar:
     if use_dev_key:
         openai_api_key = st.secrets.get("OPENAI_API_KEY", "")
         openai_base_url = st.secrets.get("OPENAI_BASE_URL", "")
-        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3", "o3-mini", "o4-mini"]
+        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3-mini"]
     else:
         openai_api_key = st.text_input("Enter your OpenAI API key:", type="password")
         openai_base_url = st.text_input("Enter OpenAI Base URL (optional):")
-        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3-mini"]
+        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3", "o3-mini", "o4-mini"]
 
     # Model Selection
     openai_model = st.selectbox("Select a model:", openai_model_options, index=0)
