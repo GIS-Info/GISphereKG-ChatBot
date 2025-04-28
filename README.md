@@ -45,7 +45,11 @@ To address these challenges, this paper proposes the GISphere-KG platform. By in
 
 ## Usage
 
-### Option 1: Online Application (Recommended)
+> [!NOTE]
+>
+> If you encounter any issues during usage, or have any suggestions for improvement, please feel free to submit an issue or pull request on GitHub to help us improve this project together. 
+
+### Option 1: Online Application
 
 Access the live application at:
  https://gispherekg.streamlit.app/

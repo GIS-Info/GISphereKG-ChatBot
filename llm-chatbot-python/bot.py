@@ -62,7 +62,7 @@ if "messages" not in st.session_state:
                     "Using [GISphere Database](https://gisphere.info), I can help you find GIS programs and professors based on research interests.\n\n"
                     "📜 Journal Article: GISphere Knowledge Graph for Geography Education: Recommending Graduate Geographic Information System/Science Programs. [DOI: 10.1111/tgis.13283](https://doi.org/10.1111/tgis.13283)\n\n"
                     "🔗 GitHub Repository: [GISphereKG Chatbot](https://github.com/GIS-Info/GISphereKG-ChatBot)\n\n"
-                    "⚠️ *Note: This chatbot is powered by an LLM and may generate incorrect responses.*"}
+                    "⚠️ *Note: This chatbot is powered by an LLM and may generate incorrect responses. If you encounter any issues during usage, or have any suggestions for improvement, please feel free to submit an issue or pull request on GitHub to help us improve this project together.*"}
     ]
 
 # Display messages in Session State
