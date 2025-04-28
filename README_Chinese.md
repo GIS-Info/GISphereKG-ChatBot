@@ -36,7 +36,11 @@
 
 ## 使用说明
 
-### 方法1：在线网页应用（推荐）
+> [!NOTE]
+>
+> 如果您在使用过程中遇到任何问题，或者有任何改进建议，欢迎在 GitHub 提交 issue 或 pull request，帮助我们共同完善这个项目。
+
+### 方法1：在线网页应用
 
 访问在线应用：https://gispherekg.streamlit.app/
 

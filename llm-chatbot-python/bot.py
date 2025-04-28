@@ -38,11 +38,11 @@ with st.sidebar:
     if use_dev_key:
         openai_api_key = st.secrets.get("OPENAI_API_KEY", "")
         openai_base_url = st.secrets.get("OPENAI_BASE_URL", "")
-        openai_model_options = ["o3-mini (Recommended)", "gpt-4o-mini", "gpt-4.1"]
+        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3-mini"]
     else:
         openai_api_key = st.text_input("Enter your OpenAI API key:", type="password")
         openai_base_url = st.text_input("Enter OpenAI Base URL (optional):")
-        openai_model_options = ["o3-mini (Recommended)", "gpt-4o-mini", "gpt-4.1", "gpt-4o"]
+        openai_model_options = ["gpt-4.1 (Recommended)", "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini", "o3", "o3-mini", "o4-mini"]
 
     # Model Selection
     openai_model = st.selectbox("Select a model:", openai_model_options, index=0)
@@ -62,7 +62,7 @@ if "messages" not in st.session_state:
                     "Using [GISphere Database](https://gisphere.info), I can help you find GIS programs and professors based on research interests.\n\n"
                     "📜 Journal Article: GISphere Knowledge Graph for Geography Education: Recommending Graduate Geographic Information System/Science Programs. [DOI: 10.1111/tgis.13283](https://doi.org/10.1111/tgis.13283)\n\n"
                     "🔗 GitHub Repository: [GISphereKG Chatbot](https://github.com/GIS-Info/GISphereKG-ChatBot)\n\n"
-                    "⚠️ *Note: This chatbot is powered by an LLM and may generate incorrect responses.*"}
+                    "⚠️ *Note: This chatbot is powered by an LLM and may generate incorrect responses. If you encounter any issues during usage, or have any suggestions for improvement, please feel free to submit an issue or pull request on GitHub to help us improve this project together.*"}
     ]
 
 # Display messages in Session State

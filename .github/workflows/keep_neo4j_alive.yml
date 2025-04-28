@@ -1,0 +1,59 @@
+name: Keep neo4j Alive
+
+on:
+  schedule:
+    # Runs every day at 5 AM UTC
+    - cron: '0 5 * * *'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  ping_auradb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Neo4j driver
+        run: pip install neo4j
+
+      - name: Run Ping Script
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USERNAME: ${{ secrets.NEO4J_USERNAME }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+        run: |
+          python - << EOF
+          import os
+          from neo4j import GraphDatabase
+          import logging
+          
+          logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+          uri = os.environ.get("NEO4J_URI")
+          user = os.environ.get("NEO4J_USERNAME")
+          password = os.environ.get("NEO4J_PASSWORD")
+
+          if not all([uri, user, password]):
+              logging.error("Database credentials not found in secrets.")
+              exit(1)
+
+          driver = None
+          try:
+              driver = GraphDatabase.driver(uri, auth=(user, password))
+              driver.verify_connectivity() # Checks connection and verifies authentication
+              logging.info("Successfully connected to Neo4j.")
+              with driver.session() as session:
+                  result = session.run("RETURN 1 AS test")
+                  record = result.single() # Get the first record
+                  value = record[0] if record else 'No result' # Safely access the value
+                  logging.info(f"Query executed, result: {value}")
+          except Exception as e:
+              logging.error(f"Error connecting or querying Neo4j: {e}", exc_info=True) # Log full traceback
+              exit(1) # Fail the workflow if connection fails
+          finally:
+              if driver:
+                  driver.close()
+                  print("Connection closed.")
+          EOF
